@@ -1,0 +1,23 @@
+{
+  "name": "telegram-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for Telegram Bot API in TypeScript",
+  "type": "module",
+  "main": "dist/telegram-mcp.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/telegram-mcp.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "@types/axios": "^0.9.36",
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.1.6"
+  }
+}
