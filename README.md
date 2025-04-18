@@ -54,23 +54,27 @@ The Telegram MCP server supports the following operations:
 
 The server implements the Model Context Protocol, so it can be used with any MCP-compatible client. Here are some example call formats:
 
+
+####Send a message
 ```json
-// Send a message
 {
   "operation": "sendMessage",
   "chatId": 123456789,
   "text": "Hello from the Telegram MCP Server!"
 }
+```
 
-// Send a photo
+####Send a photo
+```json
 {
   "operation": "sendPhoto",
   "chatId": 123456789,
   "photoUrl": "https://example.com/image.jpg",
   "caption": "Check out this photo!"
 }
-
-// Delete a message
+```
+####Delete a message
+```json
 {
   "operation": "deleteMessage",
   "chatId": 123456789,
