@@ -2,9 +2,7 @@ import { FastMCP } from "fastmcp";
 import { z } from "zod";
 import {
   sendMessage,
-  getUpdates,
   sendPhoto,
-  getChat,
   deleteMessage
 } from "./telegram.js";
 
@@ -23,18 +21,6 @@ mcp.addTool({
 });
 
 mcp.addTool({
-  name: "getUpdates",
-  description: "Get updates from Telegram",
-  parameters: z.object({
-    offset: z.number().optional(),
-    limit: z.number().optional().default(10)
-  }),
-  execute: async (args) => {
-    return await getUpdates(args.offset, args.limit);
-  }
-});
-
-mcp.addTool({
   name: "sendPhoto",
   description: "Send a photo to a chat",
   parameters: z.object({
@@ -47,16 +33,6 @@ mcp.addTool({
   }
 });
 
-mcp.addTool({
-  name: "getChat",
-  description: "Get information about a chat",
-  parameters: z.object({
-    chatId: z.number()
-  }),
-  execute: async (args) => {
-    return await getChat(args.chatId);
-  }
-});
 
 mcp.addTool({
   name: "deleteMessage",

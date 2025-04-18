@@ -23,28 +23,10 @@ export async function sendMessage(chatId: number, text: string) {
   return res.data.result;
 }
 
-export async function getUpdates(offset?: number, limit = 10) {
-  const params: any = { limit };
-  if (offset) params.offset = offset;
-  const res = await axios.get<TelegramResponse<any>>(
-    `${API_BASE}/getUpdates`,
-    { params }
-  );
-  return res.data.result;
-}
-
 export async function sendPhoto(chatId: number, photoUrl: string, caption?: string) {
   const res = await axios.post<TelegramResponse<any>>(
     `${API_BASE}/sendPhoto`,
     { chat_id: chatId, photo: photoUrl, caption }
-  );
-  return res.data.result;
-}
-
-export async function getChat(chatId: number) {
-  const res = await axios.get<TelegramResponse<any>>(
-    `${API_BASE}/getChat`,
-    { params: { chat_id: chatId } }
   );
   return res.data.result;
 }
