@@ -24,25 +24,57 @@ A Model Context Protocol server for the Telegram Bot API, allowing AI assistants
    npm start
    ```
 
+## MCP Client Configuration
+
+To use this server with an MCP client, add the following configuration to your MCP client's config file:
+
+```json
+{
+  "mcpServers": {
+    "telegram": {
+      "command": "node",
+      "args": ["path/to/telegram-mcp-server/dist/telegram-mcp.js"],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "your_bot_token_here"
+      }
+    }
+  }
+}
+```
+
 ## Supported Operations
 
 The Telegram MCP server supports the following operations:
 
 - **sendMessage**: Send a text message to a chat
-- **getUpdates**: Get updates (new messages, etc.) from Telegram
 - **sendPhoto**: Send a photo with optional caption to a chat
-- **getChat**: Get information about a specific chat
 - **deleteMessage**: Delete a message from a chat
 
 ## Usage Example
 
-The server implements the Model Context Protocol, so it can be used with any MCP-compatible client. Here's an example call format:
+The server implements the Model Context Protocol, so it can be used with any MCP-compatible client. Here are some example call formats:
 
 ```json
+// Send a message
 {
   "operation": "sendMessage",
   "chatId": 123456789,
   "text": "Hello from the Telegram MCP Server!"
+}
+
+// Send a photo
+{
+  "operation": "sendPhoto",
+  "chatId": 123456789,
+  "photoUrl": "https://example.com/image.jpg",
+  "caption": "Check out this photo!"
+}
+
+// Delete a message
+{
+  "operation": "deleteMessage",
+  "chatId": 123456789,
+  "messageId": 987654321
 }
 ```
 
@@ -52,7 +84,3 @@ This server uses:
 - The Model Context Protocol SDK
 - Telegram Bot API
 - TypeScript
-
-## License
-
-MIT 
