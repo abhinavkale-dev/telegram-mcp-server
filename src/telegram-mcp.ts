@@ -61,6 +61,25 @@ async function sendTelegramPhoto(chatId: string | number, photoUrl: string, capt
   }
 }
 
+async function deleteTelegramMessage(chatId: string | number, messageId: number) {
+  try {
+    const response = await axios.post<{ok: boolean}>(`${API_BASE}/deleteMessage`, {
+      chat_id: chatId,
+      message_id: messageId
+    });
+    
+    return { 
+      success: true,
+      result: response.data.ok 
+    };
+  } catch (error: any) {
+    return { 
+      success: false, 
+      error: error.message 
+    };
+  }
+}
+
 server.tool(
   "sendMessage",
   "Send a message to a Telegram chat",
@@ -147,25 +166,6 @@ server.tool(
     }
   }
 );
-
-async function deleteTelegramMessage(chatId: string | number, messageId: number) {
-  try {
-    const response = await axios.post<{ok: boolean}>(`${API_BASE}/deleteMessage`, {
-      chat_id: chatId,
-      message_id: messageId
-    });
-    
-    return { 
-      success: true,
-      result: response.data.ok 
-    };
-  } catch (error: any) {
-    return { 
-      success: false, 
-      error: error.message 
-    };
-  }
-}
 
 server.tool(
   "deleteMessage",
